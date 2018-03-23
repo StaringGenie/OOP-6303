@@ -22,7 +22,7 @@ public:
 	virtual string getColor() = 0;
     virtual  int getId() = 0;
 protected:
-        static uint32_t id;
+        static int id;
 
 };
 

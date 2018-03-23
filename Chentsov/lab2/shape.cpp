@@ -1,2 +1,2 @@
 #include "Shape.h"
-uint32_t Shape::id = 0;
+int Shape::id = 0;
