@@ -8,7 +8,6 @@ using namespace std;
 struct Point {
 	double x;
 	double y;
-
 	Point() : x(0.0), y(0.0) {}
     Point(double x_, double y_): x(x_), y(y_) {}
 };

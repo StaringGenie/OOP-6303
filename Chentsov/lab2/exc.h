@@ -1,28 +1,20 @@
 #ifndef EXC_H
 #define EXC_H
 
-class ex{
+#include <string>
+
+class BadFigureException{
+
+
+private:
+    std::string figureName;
 
 public:
-    virtual void print()=0;
+    BadFigureException(std::string name){
+        figureName=name;
+    }
+    void print();
 };
-
-class badTriangleException: public ex{
-public:
-    void print() override;
-};
-
-class badTrapezeException:public ex{
-public:
-    void print() override;
-};
-
-class badPentagonException:public ex
-{
-public:
-    void print() override;
-};
-
 
 
 #endif // EXC_H

@@ -9,7 +9,7 @@ class Trapeze : public Shape {
 public:
     Trapeze(Point a, Point b, Point c, Point d);
 	virtual ~Trapeze();
-
+    double getHeight();
 	void move(Point newP) override;
 	void turn(double angle) override;
 	void scale(double factor) override;

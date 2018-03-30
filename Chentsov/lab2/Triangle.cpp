@@ -5,7 +5,9 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 #include "exc.h"
+#include <algorithm>
 
 
 
@@ -18,7 +20,7 @@ Triangle::Triangle(Point a, Point b, Point c) : _a(a), _b(b), _c(c) {
 
 
     if((c.y-a.y)/(b.y-a.y)==(c.x-a.x)/(b.x-a.x)){
-        throw badTriangleException();
+        throw BadFigureException("Triangle");
     }
 
     _id=Shape::id++;
@@ -83,9 +85,34 @@ void Triangle::turn(double angle) {
 
 
 void Triangle::scale(double factor) {
-    _a.x *= factor; _a.y *= factor;
-    _b.x *= factor; _b.y *= factor;
-    _c.x *= factor; _c.y *= factor;
+    Point centre = positionCentre();
+
+    vector <double> xArray = {_a.x, _b.x, _c.x};
+    vector <double> yArray = {_a.y, _b.y, _c.y};
+
+    for (int i = 0; i < xArray.capacity() ; i++) {
+        if (xArray[i] > centre.x) {
+
+            xArray[i] = centre.x + (xArray[i] - centre.x) * factor;
+
+        } else {
+
+            xArray[i] = centre.x - (centre.x - xArray[i]) * factor;
+        }
+    }
+
+    for (int i = 0; i < yArray.capacity() ; i++) {
+        if (yArray[i] > centre.y) {
+            yArray[i] = centre.y + (yArray[i] - centre.y) * factor;
+        } else {
+            yArray[i] = centre.y - (centre.y - yArray[i]) * factor;
+        }
+    }
+
+
+    _a.x = xArray[0]; _a.y = yArray[0];
+    _b.x = xArray[1]; _b.y = yArray[1];
+    _c.x = xArray[2]; _c.y = yArray[2];
 
 }
 
